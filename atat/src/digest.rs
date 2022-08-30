@@ -178,7 +178,7 @@ pub mod parser {
         move |i| {
             let (i, (le, urc_tag)) = tuple((
                 complete::line_ending,
-                recognize(tuple((tag(token.clone()), take_until_including("\r\n")))),
+                recognize(tuple((tag(token.clone()), take_until_including("\n")))),
             ))(i)?;
 
             Ok((
