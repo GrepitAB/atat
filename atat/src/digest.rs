@@ -305,7 +305,7 @@ pub mod parser {
         recognize(nom::bytes::complete::take_until("\r\n"))(buf)
     }
 
-    fn take_until_including<'a, T, Input, Error: ParseError<Input>>(
+    pub fn take_until_including<'a, T, Input, Error: ParseError<Input>>(
         tag: T,
     ) -> impl Fn(Input) -> IResult<Input, (Input, Input), Error>
     where
@@ -418,7 +418,7 @@ pub mod parser {
         }
     }
 
-    fn trim_ascii_whitespace(x: &[u8]) -> &[u8] {
+    pub fn trim_ascii_whitespace(x: &[u8]) -> &[u8] {
         let from = match x.iter().position(|x| !x.is_ascii_whitespace()) {
             Some(i) => i,
             None => return &x[0..0],
